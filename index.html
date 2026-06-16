@@ -275,12 +275,21 @@
   }
   .sources{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   .source{
+    display:block;
     background:var(--surface-alt-card);
     border-left:2px solid var(--terracota);
     padding:16px 18px;
+    transition:transform .2s ease, box-shadow .2s ease;
   }
+  .source:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.12)}
   .source h4{font-size:12px;font-weight:500;letter-spacing:-.005em;line-height:1.35;color:var(--text-on-alt)}
   .source p{font-size:11px;line-height:1.4;color:var(--text-on-alt-soft);margin-top:4px}
+  .source__link{
+    display:block;margin-top:12px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+    color:var(--terracota);opacity:.7;transition:opacity .2s ease;
+  }
+  .source:hover .source__link{opacity:1}
 
   /* ---------- Services ---------- */
   .services{background:var(--bg-primary);color:var(--text-primary);padding:clamp(56px,8vw,90px) clamp(22px,3vw,32px)}
@@ -615,9 +624,9 @@
 
     <div class="sources-label" id="needStatsTitle">DOCUMENTED SOURCES</div>
     <div class="sources">
-      <div class="source"><h4 data-k="src1">ASCE 2025 Infrastructure Report Card</h4><p data-k="src1Sub">C- grade for US infrastructure</p></div>
-      <div class="source"><h4 data-k="src2">Florida Statute §553.899</h4><p data-k="src2Sub">Milestone inspection mandate</p></div>
-      <div class="source"><h4 data-k="src3">BLS Occupational Outlook</h4><p data-k="src3Sub">Civil engineer shortage through 2032</p></div>
+      <a class="source" href="https://infrastructurereportcard.org" target="_blank" rel="noopener"><h4 data-k="src1">ASCE 2025 Infrastructure Report Card</h4><p data-k="src1Sub">‘C’ grade · $3.7T investment gap</p><span class="source__link" aria-hidden="true">VIEW SOURCE ↗</span></a>
+      <a class="source" href="https://www.flsenate.gov/Laws/Statutes/2025/553.899" target="_blank" rel="noopener"><h4 data-k="src2">Florida Statute §553.899</h4><p data-k="src2Sub">Milestone inspection mandate</p><span class="source__link" aria-hidden="true">VIEW SOURCE ↗</span></a>
+      <a class="source" href="https://www.bls.gov/ooh/architecture-and-engineering/civil-engineers.htm" target="_blank" rel="noopener"><h4 data-k="src3">BLS Occupational Outlook</h4><p data-k="src3Sub">~23,600 openings/yr through 2034</p><span class="source__link" aria-hidden="true">VIEW SOURCE ↗</span></a>
     </div>
   </div>
 </section>
@@ -654,16 +663,13 @@
     <p class="partners__intro" id="partnersIntro">Schneider Construction LLC operates within a network of trusted Florida-based partners delivering specialized expertise across the construction value chain.</p>
 
     <div class="partners__grid">
-      <a href="https://atlascountertop.com" target="_blank" rel="noopener" class="partner-card">
-        <div class="partner-logo">
-          <span class="partner-logo-text">Atlas <em>Countertop</em></span>
-        </div>
+      <div class="partner-card is-pending">
+        <div class="partner-logo"></div>
         <div>
-          <div class="partner-name" id="partner1Name">Atlas Countertop LLC</div>
-          <div class="partner-role" id="partner1Role">Stone &amp; Surfaces Partner</div>
-          <div class="partner-meta" id="partner1Meta">SOUTHWEST FLORIDA · STRATEGIC PARTNER</div>
+          <div class="partner-pending" data-k="partnerPending1">Partnership in development</div>
+          <div class="partner-meta" data-k="partner1Cat">STONE &amp; SURFACES</div>
         </div>
-      </a>
+      </div>
 
       <div class="partner-card is-pending">
         <div class="partner-logo"></div>
@@ -768,9 +774,9 @@ const translations = {
     needH2Pre:"Florida at a", needH2Em:"structural", needH2Post:"crossroads.",
     needP:"In June 2021, the Champlain Towers collapse killed 98 people in Surfside, Florida. The state responded with Senate Bill 4-D, mandating structural and milestone inspections for buildings across the state. The engineering capacity to meet this demand does not yet exist.",
     needStatsTitle:"DOCUMENTED SOURCES",
-    src1:"ASCE 2025 Infrastructure Report Card", src1Sub:"C- grade for US infrastructure",
+    src1:"ASCE 2025 Infrastructure Report Card", src1Sub:"‘C’ grade · $3.7T investment gap",
     src2:"Florida Statute §553.899", src2Sub:"Milestone inspection mandate",
-    src3:"BLS Occupational Outlook", src3Sub:"Civil engineer shortage through 2032",
+    src3:"BLS Occupational Outlook", src3Sub:"~23,600 openings/yr through 2034",
     svcNum:"03 — SERVICES",
     svcH2Pre:"Five service lines.", svcH2Em:"One methodology.",
     svc1:"Project planning & management", svc1Cat:"PLANNING",
@@ -782,9 +788,7 @@ const translations = {
     partnersNum:"04 — PARTNERS",
     partnersH2Pre:"Built through", partnersH2Em:"partnership.",
     partnersIntro:"Schneider Construction LLC operates within a network of trusted Florida-based partners delivering specialized expertise across the construction value chain.",
-    partner1Name:"Atlas Countertop LLC",
-    partner1Role:"Stone & Surfaces Partner",
-    partner1Meta:"SOUTHWEST FLORIDA · STRATEGIC PARTNER",
+    partnerPending1:"Partnership in development", partner1Cat:"STONE & SURFACES",
     partnerPending2:"Partnership in development", partnerPending3:"Partnership in development",
     partner2Cat:"STRUCTURAL ENGINEERING", partner3Cat:"BUILDING INSPECTION",
 
@@ -817,9 +821,9 @@ const translations = {
     needH2Pre:"Flórida em uma", needH2Em:"encruzilhada", needH2Post:"estrutural.",
     needP:"Em junho de 2021, o colapso das Champlain Towers matou 98 pessoas em Surfside, Flórida. O estado respondeu com a Lei Estadual 4-D, exigindo inspeções estruturais e de marco para edifícios em todo o estado. A capacidade de engenharia para atender essa demanda ainda não existe.",
     needStatsTitle:"FONTES DOCUMENTADAS",
-    src1:"ASCE 2025 Infrastructure Report Card", src1Sub:"Nota C- para infraestrutura dos EUA",
+    src1:"ASCE 2025 Infrastructure Report Card", src1Sub:"Nota ‘C’ · déficit de US$ 3,7 tri",
     src2:"Florida Statute §553.899", src2Sub:"Mandato de inspeção por marco",
-    src3:"BLS Occupational Outlook", src3Sub:"Escassez de engenheiros civis até 2032",
+    src3:"BLS Occupational Outlook", src3Sub:"~23.600 vagas/ano até 2034",
     svcNum:"03 — SERVIÇOS",
     svcH2Pre:"Cinco linhas de serviço.", svcH2Em:"Uma metodologia.",
     svc1:"Planejamento e gestão de projetos", svc1Cat:"PLANEJAMENTO",
@@ -832,9 +836,7 @@ const translations = {
     partnersNum:"04 — PARCEIROS",
     partnersH2Pre:"Construído através de", partnersH2Em:"parceria.",
     partnersIntro:"A Schneider Construction LLC opera em uma rede de parceiros confiáveis sediados na Flórida que entregam expertise especializada em toda a cadeia de valor da construção.",
-    partner1Name:"Atlas Countertop LLC",
-    partner1Role:"Parceiro em Pedras e Superfícies",
-    partner1Meta:"SUDOESTE DA FLÓRIDA · PARCEIRO ESTRATÉGICO",
+    partnerPending1:"Parceria em desenvolvimento", partner1Cat:"PEDRAS E SUPERFÍCIES",
     partnerPending2:"Parceria em desenvolvimento", partnerPending3:"Parceria em desenvolvimento",
     partner2Cat:"ENGENHARIA ESTRUTURAL", partner3Cat:"INSPEÇÃO PREDIAL",
     fndP:"Oito anos de prática em construção e engenharia no Brasil, com especialização em engenharia diagnóstica — a disciplina mais diretamente relevante para a demanda de inspeções estruturais da Flórida. Engenheiro licenciado desde 2015 (CREA-ES). Membro da ASCE e AEI.",
@@ -865,9 +867,9 @@ const translations = {
     needH2Pre:"Florida en una", needH2Em:"encrucijada", needH2Post:"estructural.",
     needP:"En junio de 2021, el colapso de las Champlain Towers mató a 98 personas en Surfside, Florida. El estado respondió con la Ley Estatal 4-D, exigiendo inspecciones estructurales y de hito para edificios en todo el estado. La capacidad de ingeniería para atender esta demanda aún no existe.",
     needStatsTitle:"FUENTES DOCUMENTADAS",
-    src1:"ASCE 2025 Infrastructure Report Card", src1Sub:"Nota C- para infraestructura de EE.UU.",
+    src1:"ASCE 2025 Infrastructure Report Card", src1Sub:"Nota ‘C’ · brecha de US$ 3,7 bill.",
     src2:"Florida Statute §553.899", src2Sub:"Mandato de inspección por hito",
-    src3:"BLS Occupational Outlook", src3Sub:"Escasez de ingenieros civiles hasta 2032",
+    src3:"BLS Occupational Outlook", src3Sub:"~23.600 vacantes/año hasta 2034",
     svcNum:"03 — SERVICIOS",
     svcH2Pre:"Cinco líneas de servicio.", svcH2Em:"Una metodología.",
     svc1:"Planificación y gestión de proyectos", svc1Cat:"PLANIFICACIÓN",
@@ -880,9 +882,7 @@ const translations = {
     partnersNum:"04 — SOCIOS",
     partnersH2Pre:"Construido a través de", partnersH2Em:"alianzas.",
     partnersIntro:"Schneider Construction LLC opera dentro de una red de socios confiables con sede en Florida que ofrecen experiencia especializada en toda la cadena de valor de la construcción.",
-    partner1Name:"Atlas Countertop LLC",
-    partner1Role:"Socio en Piedra y Superficies",
-    partner1Meta:"SUROESTE DE FLORIDA · SOCIO ESTRATÉGICO",
+    partnerPending1:"Alianza en desarrollo", partner1Cat:"PIEDRA Y SUPERFICIES",
     partnerPending2:"Alianza en desarrollo", partnerPending3:"Alianza en desarrollo",
     partner2Cat:"INGENIERÍA ESTRUCTURAL", partner3Cat:"INSPECCIÓN DE EDIFICIOS",
     fndP:"Ocho años de práctica en construcción e ingeniería en Brasil, con especialización en ingeniería diagnóstica — la disciplina más directamente relevante para la demanda de inspecciones estructurales de Florida. Ingeniero licenciado desde 2015 (CREA-ES). Miembro de ASCE y AEI.",
@@ -943,10 +943,7 @@ function applyLang(lang){
   setText('partnersH2Pre',t.partnersH2Pre);
   setText('partnersH2Em',t.partnersH2Em);
   setText('partnersIntro',t.partnersIntro);
-  setText('partner1Name',t.partner1Name);
-  setText('partner1Role',t.partner1Role);
-  setText('partner1Meta',t.partner1Meta);
-  ['partnerPending2','partnerPending3','partner2Cat','partner3Cat'].forEach(k=>setKey(k,t[k]));
+  ['partnerPending1','partner1Cat','partnerPending2','partnerPending3','partner2Cat','partner3Cat'].forEach(k=>setKey(k,t[k]));
 
   ['cred1','cred2','cred3','cred4'].forEach(k=>setKey(k,t[k]));
   setText('ftCall',t.ftCall);
