@@ -520,7 +520,7 @@
       <span class="langs__sep">·</span>
       <button data-lang="es" aria-label="Español">ES</button>
     </nav>
-    <a href="/cdn-cgi/l/email-protection#32515d5c465351467241515a5c575b565740515d5c4146404751465b5d5c5e5e511c515d" class="cta" id="ctaNav">INQUIRE NOW →</a>
+    <a href="#" class="cta" id="ctaNav" data-eml="1">INQUIRE NOW →</a>
   </div>
 </header>
 
@@ -593,7 +593,7 @@
     </form>
     <div class="notify-done" id="notifyDone" hidden>✓ THANK YOU — WE'LL BE IN TOUCH</div>
 
-    <a href="/cdn-cgi/l/email-protection#9bf8f4f5effaf8efdbe8f8f3f5fef2fffee9f8f4f5e8efe9eef8eff2f4f5f7f7f8b5f8f4" class="inquire-link" id="inquireLink">— OR INQUIRE DIRECTLY →</a>
+    <a href="#" class="inquire-link" id="inquireLink" data-eml="1">— OR INQUIRE DIRECTLY →</a>
 
     <div class="scroll-ind">
       <div class="scroll-ind__txt" id="csScroll">SCROLL TO LEARN MORE</div>
@@ -729,7 +729,7 @@
       <div class="ft-cols">
         <div class="ft-col">
           <h5 id="ftContact">CONTACT</h5>
-          <a class="email" href="/cdn-cgi/l/email-protection#c5a6aaabb1a4a6b185b6a6adaba0aca1a0b7a6aaabb6b1b7b0a6b1acaaaba9a9a6eba6aa"><span class="__cf_email__" data-cfemail="dab9b5b4aebbb9ae9aa9b9b2b4bfb3bebfa8b9b5b4a9aea8afb9aeb3b5b4b6b6b9f4b9b5">[email&#160;protected]</span></a><br>
+          <a class="email" href="#" id="ftEmail" data-eml="1"></a><br>
           <a class="email" href="tel:+12396015383" id="ftPhone">+1 (239) 601-5383</a><br>
           <a href="https://schneiderconstructionllc.co">schneiderconstructionllc.co</a>
         </div>
@@ -750,7 +750,7 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const translations = {
   en: {
     banner:"SCHNEIDER CONSTRUCTION LLC · IN DEVELOPMENT · FORT MYERS, FL · SERVING NATIONWIDE",
@@ -1002,6 +1002,17 @@ const io=new IntersectionObserver((entries)=>{
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 applyLang('en');
+
+// Assemble email at runtime so host-side email obfuscation (e.g. Cloudflare) can't mangle it
+(function(){
+  var user='contact', domain='schneiderconstructionllc.co';
+  var addr=user+'@'+domain;
+  var mailto='mailto:'+addr;
+  document.querySelectorAll('[data-eml="1"]').forEach(function(a){
+    a.setAttribute('href', mailto);
+    if(a.id==='ftEmail') a.textContent=addr;
+  });
+})();
 
 // Back to top
 const toTop=document.getElementById('toTop');
